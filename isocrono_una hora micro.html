@@ -1,0 +1,72 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Isochrone</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
+    <script>
+    function initialize() {
+      var mapOptions = {
+        zoom: 14,
+        center: new google.maps.LatLng(-33.4469645,-70.6479599),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+      };
+
+      var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+      var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(-33.4469645,-70.6479599),
+          map: map
+      });
+
+      var isochrone;
+
+      var isochroneCoords = [
+    new google.maps.LatLng(-33.3961386,-70.6131425), 
+new google.maps.LatLng(-33.3926299,-70.5378109), 
+new google.maps.LatLng(-33.44621,-70.5471817), 
+new google.maps.LatLng(-33.4845497,-70.5634876), 
+new google.maps.LatLng(-33.5335046,-70.5877973), 
+new google.maps.LatLng(-33.5309792,-70.6477082), 
+new google.maps.LatLng(-33.5130976,-70.6937214), 
+new google.maps.LatLng(-33.5008973,-70.7601622), 
+new google.maps.LatLng(-33.4518708,-70.7663264), 
+new google.maps.LatLng(-33.4049116,-70.7360154), 
+new google.maps.LatLng(-33.3745324,-70.6967983), 
+new google.maps.LatLng(-33.3699228,-70.6522037), 
+
+      ];
+
+      isochrone = new google.maps.Polygon({
+        paths: isochroneCoords,
+        strokeColor: '#000',
+        strokeOpacity: 0.5,
+        strokeWeight: 1,
+        fillColor: '#000',
+        fillOpacity: 0.25
+      });
+
+      isochrone.setMap(map);
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    </head>
+    <body>
+    <div id="map-canvas"></div>
+    </body>
+    </html>
+    
